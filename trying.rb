@@ -1,6 +1,6 @@
 require './binary-tree-access.rb'
 
-t = SearchTree.new
+t = BinaryTree.new
 t.new_node(t.root, 3, '3', 'three')
 t.new_node(t.root, 6, '6', 'six')
 t.new_node(t.root, 10, '10', 'ten')
@@ -19,8 +19,8 @@ t.print_tree
 p t.number_nodes
 p t.get_depth
 p t.is_balanced?
-p t.get_depth(t.root.left.left)
-p t.get_depth(t.root.right)
+p t.get_depth(t.root.east.east)
+p t.get_depth(t.root.west)
 p "balance"
 t.balance
 p t.is_balanced?
@@ -34,4 +34,5 @@ p t.is_balanced?
 p t.search_node(1).args
 t.edit_node(1, '01', 'zero one')
 p t.search_node(1).args
-# p t
+t.load_file('test_file')
+p t.print_tree

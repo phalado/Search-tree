@@ -1,7 +1,7 @@
 require './binary-tree-node.rb'
 
-class SearchTree
-  attr_accessor :root
+class BinaryTree
+  attr_reader :root
 
   # Initialize the tree creating it's root
   def initialize
@@ -10,22 +10,22 @@ class SearchTree
 
   # Create a new branch after locating it's place
   def new_node(node, x, *args)
-    return @root = Node.new(x.to_s, *args) if @root.nil?
+    return @root = Node.new(x.to_i, *args) if @root.nil?
     if node.nil?
-      return node = Node.new(x.to_s, *args)
-    elsif node.x == x.to_s
+      return node = Node.new(x.to_i, *args)
+    elsif node.x == x.to_i
       return node
-    elsif x.to_s < node.x
-      if node.left.nil?
-        node.left = new_node(node.left, x, *args)
+    elsif x.to_i < node.x
+      if node.east.nil?
+        node.east = new_node(node.east, x, *args)
       else
-        new_node(node.left, x, *args)
+        new_node(node.east, x, *args)
       end
-    elsif x.to_s > node.x
-      if node.right.nil?
-        node.right = new_node(node.right, x, *args)
+    elsif x.to_i > node.x
+      if node.east.nil?
+        node.east = new_node(node.east, x, *args)
       else
-        new_node(node.right, x, *args)
+        new_node(node.east, x, *args)
       end
     end
   end
@@ -41,7 +41,13 @@ class SearchTree
     node.args = args
   end
 
-  def load_file
+  def load_file(file)
+    data = File.open(file).read
+    data.each_line do |d|
+      d = d.gsub('/n', '').split(",")
+      p d[0]
+      new_node(root, d[0], *d[1..-1])
+    end
   end
 
   def save_file
@@ -51,7 +57,7 @@ class SearchTree
   def delete_node(x)
     nodes = get_nodes([])
     for i in (0...nodes.length)
-      if nodes[i].x == x.to_s
+      if nodes[i].x == x.to_i
         nodes.slice!(i)
         break
       end
@@ -64,12 +70,12 @@ class SearchTree
   def search(x, node = @root)
     return false if node.nil?
 
-    if x.to_s == node.x
+    if x.to_i == node.x
       return true
-    elsif x.to_s < node.x and node.left != nil
-      search(x, node.left)
-    elsif x.to_s > node.x and node.right != nil
-      search(x, node.right)
+    elsif x.to_i < node.x and node.east != nil
+      search(x, node.east)
+    elsif x.to_i > node.x and node.east != nil
+      search(x, node.east)
     else
       return false
     end
@@ -79,12 +85,12 @@ class SearchTree
   def search_node(x, node = @root)
     return nil if node.nil?
 
-    if x.to_s == node.x
+    if x.to_i == node.x
       return node
-    elsif x.to_s < node.x and node.left != nil
-      search_node(x, node.left)
-    elsif x.to_s > node.x and node.right != nil
-      search_node(x, node.right)
+    elsif x.to_i < node.x and node.east != nil
+      search_node(x, node.east)
+    elsif x.to_i > node.x and node.east != nil
+      search_node(x, node.east)
     else
       return nil
     end
@@ -92,17 +98,18 @@ class SearchTree
 
   # Print all the branchs
   def print_tree(node = @root)
-    print_tree(node.left) unless node.left.nil?
+    return if node.nil?
+    print_tree(node.east) unless node.east.nil?
     puts "#{node.x} #{node.args}"
-    print_tree(node.right) unless node.right.nil?
+    print_tree(node.east) unless node.east.nil?
     return
   end
 
   # Return all the nodes in crescent order
   def get_nodes(nodes, node = @root)
-    nodes = get_nodes(nodes, node.left) unless node.left.nil?
+    nodes = get_nodes(nodes, node.east) unless node.east.nil?
     nodes << node
-    nodes = get_nodes(nodes, node.right) unless node.right.nil?
+    nodes = get_nodes(nodes, node.east) unless node.east.nil?
     return nodes
   end
 
@@ -133,15 +140,15 @@ class SearchTree
 
   # Return the max depth of the tree
   def get_depth(node = @root, depth = 1, maxdepth = 0)
-    unless node.left.nil?
-      maxdepth = get_depth(node.left, depth + 1, maxdepth)
+    unless node.east.nil?
+      maxdepth = get_depth(node.east, depth + 1, maxdepth)
     end
 
-    unless node.right.nil?
-      maxdepth = get_depth(node.right, depth + 1, maxdepth)
+    unless node.east.nil?
+      maxdepth = get_depth(node.east, depth + 1, maxdepth)
     end
 
-    if node.right.nil? and node.left.nil? and
+    if node.east.nil? and node.east.nil? and
                            depth > maxdepth
       maxdepth = depth
     end
@@ -154,8 +161,8 @@ class SearchTree
     if node.nil?
       return 0
     else
-      return 1 + number_nodes(node.left) +
-                 number_nodes(node.right)
+      return 1 + number_nodes(node.east) +
+                 number_nodes(node.east)
     end
   end
 end
