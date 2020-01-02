@@ -13,7 +13,7 @@ t.new_node(t.root, 4, '4', 'four')
 t.new_node(t.root, 7, '7', 'seven')
 t.new_node(t.root, 0, '0', 'zero')
 p t.search(7)
-p t.search("5")
+p t.search(5)
 p t.search(11)
 t.print_tree
 p t.number_nodes
@@ -34,5 +34,5 @@ p t.is_balanced?
 p t.search_node(1).args
 t.edit_node(1, '01', 'zero one')
 p t.search_node(1).args
-t.load_file('test_file')
-p t.print_tree
+# t.load_file('test_file')
+# p t.print_tree

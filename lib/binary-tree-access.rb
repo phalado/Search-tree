@@ -1,5 +1,3 @@
-require './binary-tree-node.rb'
-
 class BinaryTree
   attr_reader :root
 
@@ -10,18 +8,18 @@ class BinaryTree
 
   # Create a new branch after locating it's place
   def new_node(node, x, *args)
-    return @root = Node.new(x.to_i, *args) if @root.nil?
+    return @root = Node.new(x, *args) if @root.nil?
     if node.nil?
-      return node = Node.new(x.to_i, *args)
-    elsif node.x == x.to_i
+      return node = Node.new(x, *args)
+    elsif node.x == x
       return node
-    elsif x.to_i < node.x
-      if node.east.nil?
-        node.east = new_node(node.east, x, *args)
+    elsif x < node.x
+      if node.west.nil?
+        node.west = new_node(node.west, x, *args)
       else
-        new_node(node.east, x, *args)
+        new_node(node.west, x, *args)
       end
-    elsif x.to_i > node.x
+    elsif x > node.x
       if node.east.nil?
         node.east = new_node(node.east, x, *args)
       else
@@ -41,17 +39,17 @@ class BinaryTree
     node.args = args
   end
 
-  def load_file(file)
-    data = File.open(file).read
-    data.each_line do |d|
-      d = d.gsub('/n', '').split(",")
-      p d[0]
-      new_node(root, d[0], *d[1..-1])
-    end
-  end
+  # def load_file(file)
+  #   data = File.open(file).read
+  #   data.each_line do |d|
+  #     d = d.gsub('/n', '').split(",")
+  #     p d[0]
+  #     new_node(root, d[0], *d[1..-1])
+  #   end
+  # end
 
-  def save_file
-  end
+  # def save_file
+  # end
 
   # Delete a selected node from the tree
   def delete_node(x)
@@ -70,11 +68,11 @@ class BinaryTree
   def search(x, node = @root)
     return false if node.nil?
 
-    if x.to_i == node.x
+    if x == node.x
       return true
-    elsif x.to_i < node.x and node.east != nil
-      search(x, node.east)
-    elsif x.to_i > node.x and node.east != nil
+    elsif x < node.x and node.west != nil
+      search(x, node.west)
+    elsif x > node.x and node.east != nil
       search(x, node.east)
     else
       return false
@@ -85,11 +83,11 @@ class BinaryTree
   def search_node(x, node = @root)
     return nil if node.nil?
 
-    if x.to_i == node.x
+    if x == node.x
       return node
-    elsif x.to_i < node.x and node.east != nil
-      search_node(x, node.east)
-    elsif x.to_i > node.x and node.east != nil
+    elsif x < node.x and node.west != nil
+      search_node(x, node.west)
+    elsif x > node.x and node.east != nil
       search_node(x, node.east)
     else
       return nil
@@ -99,7 +97,7 @@ class BinaryTree
   # Print all the branchs
   def print_tree(node = @root)
     return if node.nil?
-    print_tree(node.east) unless node.east.nil?
+    print_tree(node.west) unless node.west.nil?
     puts "#{node.x} #{node.args}"
     print_tree(node.east) unless node.east.nil?
     return
@@ -107,7 +105,7 @@ class BinaryTree
 
   # Return all the nodes in crescent order
   def get_nodes(nodes, node = @root)
-    nodes = get_nodes(nodes, node.east) unless node.east.nil?
+    nodes = get_nodes(nodes, node.west) unless node.west.nil?
     nodes << node
     nodes = get_nodes(nodes, node.east) unless node.east.nil?
     return nodes
@@ -140,15 +138,15 @@ class BinaryTree
 
   # Return the max depth of the tree
   def get_depth(node = @root, depth = 1, maxdepth = 0)
-    unless node.east.nil?
-      maxdepth = get_depth(node.east, depth + 1, maxdepth)
+    unless node.west.nil?
+      maxdepth = get_depth(node.west, depth + 1, maxdepth)
     end
 
     unless node.east.nil?
       maxdepth = get_depth(node.east, depth + 1, maxdepth)
     end
 
-    if node.east.nil? and node.east.nil? and
+    if node.west.nil? and node.east.nil? and
                            depth > maxdepth
       maxdepth = depth
     end
@@ -161,7 +159,7 @@ class BinaryTree
     if node.nil?
       return 0
     else
-      return 1 + number_nodes(node.east) +
+      return 1 + number_nodes(node.west) +
                  number_nodes(node.east)
     end
   end
