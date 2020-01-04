@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = %q{search_tree}
-  s.version       = "1.0.0.0"
+  s.version       = "1.0.0.1"
   # s.licenses      = ['None']
   s.date          = %q{2020-01-01}
   s.summary       = %q{Open-source binary and bi-dimensional tree for ruby.}
