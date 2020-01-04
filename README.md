@@ -1,9 +1,9 @@
 # Search-tree - Open source search binary tree and bi-dimensional tree.
 
-[![Forks][forks-shield]](forks-url) [![Stars][stars-shield]](stars-url) [![Issues][issues-shield]](issues-url) [![Inline docs][docs-shield]](docs-url) [![Twitter][twitter-shield]](twitter-url)
+[![Forks][forks-shield]][forks-url] [![Stars][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![Inline docs][docs-shield]][docs-url] [![Twitter][twitter-shield]][twitter-url]
 
 Search tree is an open-source binary and bi-dimensional tree gem for ruby.
-For more information about why and how it was done visit my [article](article-url) in [Medium](medium-phalado).
+For more information about why and how it was done visit my [article][article-url] in [Medium][medium-phalado].
 
 <p align="center">
     <a href="https://github.com/phalado/Search-tree/issues">Report Bug</a>
@@ -36,7 +36,7 @@ For more information about why and how it was done visit my [article](article-ur
 
 ## Install and Usage
 
-Download the [gem file](gem-file) and use the following command to install:
+Download the [gem file][gem-file] and use the following command to install:
 ```bash
 gem install search_tree-[version].gem
 ```
@@ -147,7 +147,7 @@ Create a file with the data in the tree.
 
 ## Author and Contribution
 
-Add me at [linkedin](linkedin-url), send me an [email](phalado@gmail.com), visit my [twitter](twitter-url), [medium](medium-phalado) and [portfolio](my-portfolio).
+Add me at [linkedin][linkedin-url], send me an [email][phalado@gmail.com], visit my [twitter][twitter-url], [medium][medium-phalado] and [portfolio][my-portfolio].
 
 Feel free to contribute with pull requests but, for major changes, please open an issue first.
 
