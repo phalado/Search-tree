@@ -1,3 +1,5 @@
+require './lib/binary-tree-node.rb'
+
 class BinaryTree
   attr_reader :root
 
@@ -28,28 +30,37 @@ class BinaryTree
     end
   end
 
+  # Create a new node and balance the tree
   def new_node_balanced(node, x, *args)
     new_node(node, x, *args)
     balance unless is_balanced?
   end
 
+  # Edit an existing node
   def edit_node(x, *args)
     node = search_node(x)
     return if node.nil?
     node.args = args
   end
 
-  # def load_file(file)
-  #   data = File.open(file).read
-  #   data.each_line do |d|
-  #     d = d.gsub('/n', '').split(",")
-  #     p d[0]
-  #     new_node(root, d[0], *d[1..-1])
-  #   end
-  # end
+  # Load a file and create a (sub)tree with its data
+  def load_file(file)
+    data = File.open(file).readlines.map(&:chomp)
+    data.each do |d|
+      d = d.split(',')
+      new_node(@root, *d[0], *d[1..-1]) unless d.nil?
+    end
+  end
 
-  # def save_file
-  # end
+  # Save the current tree in a file
+  def save_file
+    nodes = get_nodes([])
+    file = File.open('search_tree', 'w')
+    nodes.each do |node|
+        file.puts("#{node.x} #{node.args}")
+    end
+    file.close
+  end
 
   # Delete a selected node from the tree
   def delete_node(x)

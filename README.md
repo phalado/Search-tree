@@ -28,6 +28,8 @@ For more information about why and how it was done visit my [article](article-ur
   * [Get nodes](#get-nodes)
   * [New balance nodes](#new-balance-nodes)
   * [New node balanced](#new-node-balanced)
+  * [Load file](#load-file)
+  * [Save file](#save-file)
 * [Author and Contribution](#author-and-contribution)
 * [License](#license)
 * [Future Works](#future-works)
@@ -130,6 +132,18 @@ Used to create a new node with the array **nodes** received in the ``get_nodes``
 new_node_balanced(node, x, *args)
 ```
 Create a new node and balance the tree.
+
+### Load file
+```ruby
+load_file(file)
+```
+Create a tree with the data inside a file. The search parameter will always be a string.
+
+### Save file
+```ruby
+save_file(file)
+```
+Create a file with the data in the tree.
 
 ## Author and Contribution
 
