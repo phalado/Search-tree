@@ -81,9 +81,9 @@ class BinaryTree
 
     if x == node.x
       return true
-    elsif x < node.x and node.west != nil
+    elsif x < node.x and !node.west.nil?
       search(x, node.west)
-    elsif x > node.x and node.east != nil
+    elsif x > node.x and !node.east.nil?
       search(x, node.east)
     else
       return false
@@ -96,9 +96,9 @@ class BinaryTree
 
     if x == node.x
       return node
-    elsif x < node.x and node.west != nil
+    elsif x < node.x and !node.west.nil?
       search_node(x, node.west)
-    elsif x > node.x and node.east != nil
+    elsif x > node.x and !node.east.nil?
       search_node(x, node.east)
     else
       return nil
