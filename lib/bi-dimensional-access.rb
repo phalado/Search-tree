@@ -1,3 +1,5 @@
+require './lib/bi-dimensional-node.rb'
+
 class BiDimensionalTree
   attr_reader :root
 
@@ -195,29 +197,33 @@ class BiDimensionalTree
   # Return the number of branchs
   def number_nodes_horiz(node = @root)
     if node.nil?
-      return 0
+      0
     else
-      return 1 + number_nodes(node.west) +
-                 number_nodes(node.east)
+      1 +
+      number_nodes(node.west) +
+      number_nodes(node.east)
     end
   end
 
   def number_nodes_vert(node = @root)
     if node.nil?
-      return 0
+      0
     else
-      return 1 + number_nodes(node.south) +
-                 number_nodes(node.north)
+      1 +
+      number_nodes(node.south) +
+      number_nodes(node.north)
     end
   end
 
   def number_nodes_total(node = @root)
     if node.nil?
-      return 0
+      0
     else
-      return 1 + number_nodes(node.west)  +
-                 number_nodes(node.east)  +
-                 number_nodes(node.south) +
-                 number_nodes(node.north)
+      1 +
+      number_nodes(node.west)  +
+      number_nodes(node.east)  +
+      number_nodes(node.south) +
+      number_nodes(node.north)
+    end
   end
 end

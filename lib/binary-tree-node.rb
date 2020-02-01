@@ -7,7 +7,5 @@ class Node
   def initialize(x, *args)
     @x    = x
     @args = args
-    east  = nil;
-    west  = nil;
   end
 end

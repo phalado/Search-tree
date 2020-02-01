@@ -1,2 +1,2 @@
-require 'binary-tree-access.rb'
-require 'binary-tree-node.rb'
+require './lib/binary-tree-access.rb'
+require './lib/binary-tree-node.rb'

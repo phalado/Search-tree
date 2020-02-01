@@ -8,9 +8,5 @@ class Node
     @x    = x
     @y    = y
     @args = args
-    east  = nil;
-    west  = nil;
-    south = nil;
-    north = nil;
   end
 end

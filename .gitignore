@@ -1,0 +1,12 @@
+.rspec
+/spec/tmp
+# Ignore node_modules
+node_modules/
+# Ignore yarn files
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+/node_modules/**/*
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
