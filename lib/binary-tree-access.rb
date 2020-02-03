@@ -60,12 +60,8 @@ class BinaryTree
   # Delete a selected node from the tree
   def delete_node(x)
     nodes = get_nodes([])
-    (0...nodes.length).each do |i|
-      if nodes[i].x == x.to_i
-        nodes.slice!(i)
-        break
-      end
-    end
+    node = search_node(x)
+    nodes.delete(node) if nodes.include? node
     @root = nil
     new_balance_nodes(nodes, @root)
   end

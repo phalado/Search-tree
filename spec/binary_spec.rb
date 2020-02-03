@@ -25,6 +25,11 @@ RSpec.describe 'BinaryTree' do
       expect(tree.search(11)).to be_falsy
     end
 
+    it 'returns true if a bigger node is on the east ans a smaller is on the west' do
+      expect(tree.search_node(3).east.x).to eql(6)
+      expect(tree.search_node(3).west.x).to eql(2)
+    end
+
     it 'return the number of nodes in the tree' do
       expect(tree.number_nodes).to eql(11)
     end

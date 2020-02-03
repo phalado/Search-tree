@@ -182,7 +182,7 @@ Have a big ambition to create the bi-dimensional tree. I will do it in the next 
 [twitter-url]: https://twitter.com/Phalado
 [article-url]: https://medium.com/p/bdfe7069be2d/
 [medium-phalado]: https://medium.com/@phalado
-[gem-file]: http://.com/
+[gem-file]: https://drive.google.com/file/d/1emVISdDfuqisPSIYzv8qKCvVjo8gJdwT/view?usp=sharing
 [linkedin-url]: https://www.linkedin.com/in/raphael-cordeiro/
 [my-portfolio]: https://phalado.github.io/
 

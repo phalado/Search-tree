@@ -1,4 +1,4 @@
-class Node
+class BiNode
   attr_reader :x, :y
   attr_accessor :east, :west, :north, :south, :args
 
